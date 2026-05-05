@@ -4,18 +4,18 @@ metadata:
   annotations:
     build.appstudio.openshift.io/repo: https://github.com/smodak-rh/example-rok-libecpg-1?rev={{revision}}
     build.appstudio.redhat.com/commit_sha: '{{revision}}'
-    build.appstudio.redhat.com/pull_request_number: '{{pull_request_number}}'
+    build.appstudio.redhat.com/push_request_number: '{{push_request_number}}'
     build.appstudio.redhat.com/target_branch: '{{target_branch}}'
     pipelinesascode.tekton.dev/cancel-in-progress: "true"
     pipelinesascode.tekton.dev/max-keep-runs: "3"
-    pipelinesascode.tekton.dev/on-cel-expression: event == "pull_request" && target_branch
+    pipelinesascode.tekton.dev/on-cel-expression: event == "push_request" && target_branch
       == "master"
   creationTimestamp: null
   labels:
     appstudio.openshift.io/application: example-packages
     appstudio.openshift.io/component: subrata-sample-rpm-package-onboarding
     pipelines.appstudio.openshift.io/type: build
-  name: subrata-sample-rpm-package-onboarding-on-pull-request
+  name: subrata-sample-rpm-package-onboarding-on-push-request
   namespace: test-rhtap-3000-tenant
 spec:
   timeouts:
