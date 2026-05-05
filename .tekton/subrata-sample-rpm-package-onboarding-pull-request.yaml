@@ -8,8 +8,7 @@ metadata:
     build.appstudio.redhat.com/target_branch: '{{target_branch}}'
     pipelinesascode.tekton.dev/cancel-in-progress: "true"
     pipelinesascode.tekton.dev/max-keep-runs: "3"
-    pipelinesascode.tekton.dev/on-cel-expression: event == "pull_request" && target_branch
-      == "master"
+    pipelinesascode.tekton.dev/on-cel-expression: event == "pull_request" && target_branch == "master"
   creationTimestamp: null
   labels:
     appstudio.openshift.io/application: example-packages
@@ -39,13 +38,13 @@ spec:
     - name: build-architectures
       value:
         - x86_64
-  - name: ociStorage
-    value: quay.io/redhat-user-workloads-stage/test-rhtap-3000-tenant/subrata-sample-rpm-package-onboarding:on-pr-{{revision}}
-pipelineRef:
+    - name: ociStorage
+      value: quay.io/redhat-user-workloads-stage/test-rhtap-3000-tenant/subrata-sample-rpm-package-onboarding:on-pr-{{revision}}
+  pipelineRef:
     resolver: git
     params:
       - name: url
-        value: https://github.com/konflux-ci/rpmbuild-pipeline.git 
+        value: https://github.com/konflux-ci/rpmbuild-pipeline.git
       - name: revision
         value: "main"
       - name: pathInRepo
@@ -55,4 +54,4 @@ pipelineRef:
       secret:
         secretName: '{{ git_auth_secret }}'
   taskRunTemplate:
-    serviceAccountName: build-pipeline-example-rok-libecpg
+    serviceAccountName: build-pipeline-subrata-sample-rpm-package-onboarding
