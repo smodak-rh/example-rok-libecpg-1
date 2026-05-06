@@ -38,9 +38,9 @@ spec:
     - name: build-architectures
       value:
         - x86_64
-	- arm64
-	- ppc64le
-	- s390x
+        - arm64
+        - ppc64le
+        - s390x
     - name: ociStorage
       value: quay.io/redhat-user-workloads-stage/test-rhtap-3000-tenant/subrata-sample-rpm-package-onboarding:on-pr-{{revision}}
   pipelineRef:
